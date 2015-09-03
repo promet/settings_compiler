@@ -62,6 +62,7 @@ and the keys you can set under *settings* is limited to this list:
 * `db_prefix`
 * `drupal_hash_salt`
 * `is_https`
+* `base_url`
 * `base_secure_url`
 * `base_insecure_url`
 
