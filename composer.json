@@ -1,9 +1,13 @@
 {
-    "name": "winmillwill/settings_compile",
+    "name": "promet/settings_compile",
     "authors": [
         {
             "name": "Will Milton",
             "email": "wa.milton@gmail.com"
+        },
+        {
+            "name": "Promet Source",
+            "email": "support@prometsource.com"
         }
     ],
     "require": {

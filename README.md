@@ -64,6 +64,7 @@ and the keys you can set under *settings* is limited to this list:
 * `is_https`
 * `base_secure_url`
 * `base_insecure_url`
+* `base_url`
 
 You can require your composer autoloader (or any other php file) like this (for 2.0.x):
 
