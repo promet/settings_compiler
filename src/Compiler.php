@@ -46,20 +46,20 @@ class Compiler
     function write($path)
     {
         $this->settingsPreprocess();
-        $settings = "<?php\n";
+        $settings = "<?php\n//settings.php file\n\n";
         foreach ($this->config['settings'] as $settingName => $settingValue) {
-          $setting = "\$$settingName=";
+          $setting = "\$$settingName = ";
           $setting .= is_array($settingValue)
             ? $this->writeArray($settingValue)
             : $this->quote($settingValue);
-          $settings .= "$setting;";
+          $settings .= "$setting;\n\n";
         }
         foreach ($this->config['ini'] as $iniDirective => $iniValue) {
-            $settings .= "ini_set({$this->quote($iniDirective)}, {$this->quote($iniValue)});";
+            $settings .= "ini_set({$this->quote($iniDirective)}, {$this->quote($iniValue)});\n\n";
         }
         foreach ($this->config['include'] as $type => $includes) {
             foreach ($includes as $includePath) {
-                $settings .= "$type {$this->quote($includePath)};";
+                $settings .= "$type {$this->quote($includePath)};\n\n";
             }
         }
         file_put_contents($path, $settings);
@@ -67,14 +67,18 @@ class Compiler
 
     function writeArray($array)
     {
-        $arrayString = 'array(';
+        $arrayString = '[' . "\n  ";
+        $indent = "  ";
         foreach ($array as $key => $value) {
             $arrayString .= $this->quote($key)
                 . ' => '
                 . $this->quote($value)
-                . ',';
+                . ',' . "\n"
+                . $indent;
         }
-        $arrayString .= ')';
+        $arrayString = rtrim($arrayString);
+        //$arrayString 
+        $arrayString .= "\n" . ']';
         return $arrayString;
     }
 
